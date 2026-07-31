@@ -4,8 +4,8 @@ import { Analytics } from '@vercel/analytics/next'
 
 export const metadata: Metadata = {
   title: {
-    default: 'SolarUI',
-    template: '%s – SolarUI'
+    default: 'Solar UI',
+    template: '%s – Solar UI'
   },
   description: 'A modern UI component library built with React, Tailwind CSS and shadcn/ui'
 }

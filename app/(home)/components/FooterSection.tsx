@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import FooterWordmark from './FooterWordmark'
 import SolarUILogo from './SolarUILogo'
 
 const FIGMA_URL = 'https://www.figma.com/community/file/1617663822970891226'
@@ -67,9 +68,11 @@ export default function FooterSection() {
         {/* Bottom row */}
         <div className="mt-12 flex flex-col items-center justify-between gap-2 text-xs text-default-10 sm:flex-row">
           <span>© 2026 Solar UI. MIT License.</span>
-          <span>Built with SolarUI</span>
+          <span>Built with Solar UI</span>
         </div>
       </div>
+
+      <FooterWordmark />
     </footer>
   )
 }
