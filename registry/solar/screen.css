@@ -1,0 +1,102 @@
+/* ============================================================================
+ * SolarUI — collection « Screen »
+ * ----------------------------------------------------------------------------
+ * Miroir de la collection Figma "Screen" (51 variables, modes Desktop / Mobile).
+ * Elle ne contient que des nombres : les tailles d'espacement et les deux
+ * gammes typographiques. Aucune couleur, aucune décision sémantique.
+ *
+ * La bascule Desktop → Mobile est automatique, pilotée par le breakpoint
+ * ci-dessous. Les composants n'ont donc jamais à écrire de variante `md:` pour
+ * l'échelle : ils consomment le token, l'échelle suit le viewport.
+ *
+ * Toutes les valeurs Mobile valent exactement Desktop × 1,25.
+ * ========================================================================== */
+
+/* ─── Breakpoint ──────────────────────────────────────────────────────────── */
+/* 48rem = 768px, aligné sur `md` de Tailwind et sur le hook `use-mobile`.    */
+
+:root {
+  /* ─── Sizes ─────────────────────────────────────────────────────────────
+   * L'échelle Sizes de Figma est un multiple exact de l'unité d'espacement
+   * Tailwind : Sizes/0,25 = 1 unité, Sizes/1 = 4 unités, Sizes/10 = 40 unités.
+   * Redéfinir `--spacing` suffit donc à rendre responsive TOUTE la famille
+   * d'utilitaires (`p-*`, `gap-*`, `h-*`, `w-*`, `m-*`, `space-*`…).
+   *
+   *   Figma          Desktop   Mobile    Utilitaire Tailwind
+   *   Sizes/0,125      2px      2.5px    0.5
+   *   Sizes/0,25       4px      5px      1
+   *   Sizes/0,375      6px      7.5px    1.5
+   *   Sizes/0,50       8px     10px      2
+   *   Sizes/0,75      12px     15px      3
+   *   Sizes/1         16px     20px      4
+   *   …
+   *   Sizes/10       160px    200px      40
+   */
+  --spacing: 0.25rem;
+
+  /* ─── Type Scale / Small ────────────────────────────────────────────────
+   * Gamme typographique utilisée par le thème Stellar.
+   */
+  --solar-type-small-1: 2.565rem;
+  --solar-type-small-2: 2.2802rem;
+  --solar-type-small-3: 2.0271rem;
+  --solar-type-small-4: 1.8021rem;
+  --solar-type-small-5: 1.6017rem;
+  --solar-type-small-6: 1.4238rem;
+  --solar-type-small-7: 1.2656rem;
+  --solar-type-small-8: 1.125rem;
+  --solar-type-small-9: 1rem;
+  --solar-type-small-10: 0.8888rem;
+  --solar-type-small-11: 0.7777rem;
+  --solar-type-small-12: 0.7025rem;
+
+  /* ─── Type Scale / Medium ───────────────────────────────────────────────
+   * Gamme typographique utilisée par le thème 2.
+   */
+  --solar-type-medium-1: 4.3005rem;
+  --solar-type-medium-2: 3.5835rem;
+  --solar-type-medium-3: 2.9865rem;
+  --solar-type-medium-4: 2.4885rem;
+  --solar-type-medium-5: 2.0738rem;
+  --solar-type-medium-6: 1.728rem;
+  --solar-type-medium-7: 1.44rem;
+  --solar-type-medium-8: 1.2rem;
+  --solar-type-medium-9: 1rem;
+  --solar-type-medium-10: 0.8331rem;
+  --solar-type-medium-11: 0.6944rem;
+  --solar-type-medium-12: 0.5788rem;
+}
+
+/* ─── Mode Mobile ─────────────────────────────────────────────────────────── */
+
+@media (width < 48rem) {
+  :root {
+    --spacing: 0.3125rem;
+
+    --solar-type-small-1: 1.8906rem;
+    --solar-type-small-2: 1.7719rem;
+    --solar-type-small-3: 1.6605rem;
+    --solar-type-small-4: 1.5565rem;
+    --solar-type-small-5: 1.4585rem;
+    --solar-type-small-6: 1.3671rem;
+    --solar-type-small-7: 1.2811rem;
+    --solar-type-small-8: 1.2006rem;
+    --solar-type-small-9: 1.125rem;
+    --solar-type-small-10: 1.0544rem;
+    --solar-type-small-11: 0.9881rem;
+    --solar-type-small-12: 0.9261rem;
+
+    --solar-type-medium-1: 2.8856rem;
+    --solar-type-medium-2: 2.565rem;
+    --solar-type-medium-3: 2.2802rem;
+    --solar-type-medium-4: 2.0271rem;
+    --solar-type-medium-5: 1.8021rem;
+    --solar-type-medium-6: 1.6017rem;
+    --solar-type-medium-7: 1.4238rem;
+    --solar-type-medium-8: 1.2656rem;
+    --solar-type-medium-9: 1.125rem;
+    --solar-type-medium-10: 1rem;
+    --solar-type-medium-11: 0.8888rem;
+    --solar-type-medium-12: 0.79rem;
+  }
+}

@@ -46,7 +46,8 @@ Le serveur MCP est une capacité forte du produit, mais n'est pas ce sur quoi re
 
 - 68 composants UI dans `components/ui/`, sources distribuées depuis `registry/solar/ui/`.
 - Registry compatible shadcn (`registry.json`, build via `npm run registry:build`).
-- Thème distribué en tant que fichier (`registry/solar/solar-theme.css`).
+- Tokens distribués en miroir des collections Figma : `registry/solar/radix.css` (Mode), `screen.css` (Screen), `themes/*.css` (Theme), assemblés par `theme.css`.
+- Deux thèmes livrés — Stellar et Trevia — commutables à l'exécution via `data-theme`.
 - Serveur MCP HTTP exposant composants, tokens et règles de design (`app/api/mcp/route.ts`, documenté dans [MCP.md](MCP.md)).
 - Documentation Nextra avec recherche Pagefind, démos interactives, charts Recharts.
 - Fichier Figma publié sur Figma Community.

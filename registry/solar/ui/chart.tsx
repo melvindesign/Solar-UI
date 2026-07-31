@@ -56,7 +56,7 @@ function ChartContainer({
         data-slot="chart"
         data-chart={chartId}
         className={cn(
-          "flex aspect-video justify-center text-xs [&_.recharts-cartesian-axis-tick_text]:fill-default-11 [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-default-6/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-default-6 [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-hidden [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-default-6 [&_.recharts-radial-bar-background-sector]:fill-default-3 [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-default-3 [&_.recharts-reference-line_[stroke='#ccc']]:stroke-default-6 [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-surface]:outline-hidden",
+          "flex aspect-video justify-center text-label-compact [&_.recharts-cartesian-axis-tick_text]:fill-default-11 [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-default-6/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-default-6 [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-hidden [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-default-6 [&_.recharts-radial-bar-background-sector]:fill-default-3 [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-default-3 [&_.recharts-reference-line_[stroke='#ccc']]:stroke-default-6 [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-surface]:outline-hidden",
           className
         )}
         {...props}
@@ -173,7 +173,7 @@ function ChartTooltipContent({
 
   return (
     <div
-      className={cn("border-default-6/50 bg-default-1 gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl grid min-w-32 items-start", className)}
+      className={cn("border-default-6/50 bg-default-1 gap-1.5 rounded-lg border px-2.5 py-1.5 text-label-compact shadow-xl grid min-w-32 items-start", className)}
     >
       {!nestLabel ? tooltipLabel : null}
       <div className="grid gap-1.5">

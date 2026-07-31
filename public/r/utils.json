@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "lib/utils.ts",
-      "content": "import { type ClassValue, clsx } from \"clsx\"\nimport { twMerge } from \"tailwind-merge\"\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n",
+      "content": "import { type ClassValue, clsx } from \"clsx\"\nimport { extendTailwindMerge } from \"tailwind-merge\"\n\n/**\n * tailwind-merge ne connaît que l'échelle typographique par défaut de Tailwind\n * (`text-sm`, `text-lg`…). Sans cette extension, il interprète `text-label` ou\n * `text-title-6` comme des *couleurs* de texte : la classe est alors écrasée\n * par le premier `text-default-*` rencontré et la taille de police disparaît\n * silencieusement du DOM.\n *\n * On déclare donc explicitement les tokens de la collection Figma « Theme »\n * (Typography / Font Size) comme appartenant au groupe `font-size`.\n */\nconst twMerge = extendTailwindMerge({\n  extend: {\n    classGroups: {\n      \"font-size\": [\n        {\n          text: [\n            \"display-1\", \"display-2\", \"display-3\",\n            \"display-4\", \"display-5\", \"display-6\",\n            \"title-1\", \"title-2\", \"title-3\",\n            \"title-4\", \"title-5\", \"title-6\",\n            \"label\", \"label-compact\",\n            \"body\", \"body-compact\",\n            \"code\", \"code-compact\",\n            \"avatar-fallback-sm\",\n          ],\n        },\n      ],\n    },\n  },\n})\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n",
       "type": "registry:lib"
     }
   ],

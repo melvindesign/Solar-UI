@@ -5,7 +5,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 const displayVariants = cva(
-  "font-sans text-default-12",
+  "font-header text-default-12",
   {
     variants: {
       size: {

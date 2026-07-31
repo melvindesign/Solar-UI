@@ -36,7 +36,10 @@ SolarUI/
 ├── registry/
 │   └── solar/
 │       ├── ui/              # Source files for all UI components
-│       └── solar-theme.css  # Distributed theme file (via shadcn registry)
+│       ├── themes/          # One file per theme (stellar, trevia) — Figma "Theme"
+│       ├── radix.css        # Radix Colors primitives — Figma "Mode"
+│       ├── screen.css       # Sizes & type scales, desktop/mobile — Figma "Screen"
+│       └── theme.css        # Entry point, distributed via the shadcn registry
 │
 ├── lib/
 │   └── utils.ts                # cn() utility (clsx + tailwind-merge)
