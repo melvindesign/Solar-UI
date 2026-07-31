@@ -38,7 +38,7 @@ function PaginationItem({ ...props }: React.ComponentProps<"li">) {
 
 type PaginationLinkProps = {
   isActive?: boolean
-  size?: "default" | "compact" | "icon"
+  size?: "default" | "compact"
 } & React.ComponentProps<"a">
 
 function PaginationLink({

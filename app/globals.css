@@ -8,6 +8,48 @@
  * contient que ce qui appartient au site lui-même — jamais un token de thème.
  * ========================================================================== */
 
+/* ─── Polices nommées par le thème Trevia ────────────────────────────────────
+ * Un thème nomme ses polices ; c'est à l'application de les fournir. Ces deux
+ * familles sont donc déclarées ici, côté site, et jamais dans un fichier de
+ * thème. Sous-ensemble latin uniquement, auto-hébergé (OFL).
+ *
+ * Aucun `preload` : le navigateur ne télécharge un woff2 que lorsqu'un glyphe
+ * en a besoin, c'est-à-dire au moment où `data-theme="trevia"` est posé. Qui ne
+ * bascule jamais ne paie rien.
+ * -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/poppins-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/poppins-500.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/poppins-600.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-var.woff2") format("woff2");
+}
+
 @theme {
   --animate-hero-fade-in: hero-fade-in 0.6s ease-out forwards;
   --animate-token-line: token-line 0.32s cubic-bezier(0.16, 1, 0.3, 1) backwards;

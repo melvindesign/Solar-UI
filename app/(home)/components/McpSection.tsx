@@ -127,8 +127,8 @@ export default function McpSection() {
           </Display>
           <Body className="mt-4 max-w-[58ch] text-default-11">
             Solar UI ships a Model Context Protocol server. Assistants query the system instead of
-            guessing at variant names — and the answer for <Code>brand-3</Code> is the token you
-            just inspected, in a fourth form.
+            guessing at variant names. Whichever theme you just applied, the server answers for
+            the project&rsquo;s default one — here, <Code>brand-3</Code> in a fourth form.
           </Body>
         </div>
 

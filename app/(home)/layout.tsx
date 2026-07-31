@@ -13,10 +13,13 @@ export default function HomeLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
-        {/* Anti-FOUC: apply saved theme before first paint */}
+        {/*
+          Anti-FOUC: apply the saved light/dark mode and the saved theme before
+          first paint. The two are independent axes and keep separate keys.
+        */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){var t=localStorage.getItem('solar-ui')||'system';if(t==='dark'){document.documentElement.classList.add('dark')}else if(t==='light'){document.documentElement.classList.remove('dark')}else{if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark')}}}())`,
+            __html: `(function(){var t=localStorage.getItem('solar-ui')||'system';if(t==='dark'){document.documentElement.classList.add('dark')}else if(t==='light'){document.documentElement.classList.remove('dark')}else{if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark')}}var n=localStorage.getItem('solar-ui-theme');if(n==='trevia'||n==='stellar'){document.documentElement.setAttribute('data-theme',n)}}())`,
           }}
         />
       </head>

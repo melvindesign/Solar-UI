@@ -5,21 +5,25 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "focus-visible:border-default-8 focus-visible:ring-default-7 aria-invalid:ring-error-7 aria-invalid:border-error-8 rounded-field border border-transparent bg-clip-padding text-label font-medium focus-visible:ring-3 aria-invalid:ring-3 active:translate-y-px [&_svg:not([class*='size-'])]:size-4 group/button inline-flex flex-row shrink-0 items-center justify-center whitespace-nowrap transition-all outline-none select-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 relative overflow-hidden after:absolute after:inset-0 after:rounded-[inherit] after:pointer-events-none after:opacity-0 after:transition-opacity hover:after:opacity-100",
+  "focus-visible:ring-default-8 aria-invalid:ring-error-7 aria-invalid:border-error-8 border border-transparent bg-clip-padding text-label tracking-body font-medium focus-visible:ring-2 aria-invalid:ring-3 active:translate-y-px [&_svg:not([class*='size-'])]:size-4 group/button inline-flex flex-row shrink-0 items-center justify-center whitespace-nowrap transition-all outline-none select-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 relative overflow-hidden",
   {
     variants: {
       variant: {
-        default: "bg-default-9 border-black-a5 text-default-1 shadow-[0px_3px_4px_-1px_var(--black-a2),inset_0px_2px_1px_0px_var(--white-a3)] after:bg-white-a2",
-        primary: "bg-gradient-to-t from-brand-10 to-brand-9 border-brand-8 text-white-a12 shadow-[0px_3px_4px_-1px_var(--black-a2),inset_0px_2px_1px_0px_var(--white-a3)] after:bg-white-a2",
-        secondary: "bg-gradient-to-t from-default-3 to-default-1 border-default-7 text-default-12 after:bg-black-a1",
-        ghost: "text-default-12 hover:bg-black-a1 aria-expanded:bg-black-a1",
-        destructive: "bg-error-3 text-error-11 after:bg-black-a1",
-        link: "text-link-11 underline-offset-4 hover:underline",
+        default: "bg-default-9 hover:bg-default-10 border-black-a5 text-default-1 shadow-[0px_1px_2px_0px_var(--black-a2),inset_0px_2px_1px_0px_var(--white-a3)]",
+        primary: "bg-gradient-to-t from-brand-10 to-brand-9 hover:bg-none hover:bg-brand-10 border-brand-8 text-white-a12 shadow-[0px_1px_2px_0px_var(--black-a2),inset_0px_2px_1px_0px_var(--white-a3)]",
+        secondary: "bg-gradient-to-t from-default-3 to-default-1 hover:bg-none hover:bg-default-4 border-default-8 text-default-12",
+        ghost: "text-default-12 hover:bg-default-4 aria-expanded:bg-default-4",
+        destructive: "bg-error-3 hover:bg-error-4 text-error-11",
+        link: "text-brand-11 underline-offset-4 hover:underline",
       },
+      /* Les paddings horizontaux retranchent 1px : le stroke Figma est intérieur
+       * et donc compris dans la largeur, là où le padding CSS part de l'intérieur
+       * de la bordure. Sans ça un bouton icon-only ferait 38×36 au lieu d'un carré. */
       size: {
-        default: "gap-1.5 py-2 px-4 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-        compact: "gap-1 py-1 px-2 text-label-compact has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
-        icon: "size-field [&_svg:not([class*='size-'])]:size-4",
+        default:
+          "rounded-field min-h-field gap-2 py-1 px-[calc(var(--spacing)*2-1px)] [&>svg]:mx-0.5",
+        compact:
+          "rounded-[calc(var(--radius-field)-2px)] min-h-[calc(var(--spacing)*7.5)] py-1 px-[calc(var(--spacing)-1px)] [&>svg]:mx-1.5 [&_svg:not([class*='size-'])]:size-2.5",
       },
     },
     defaultVariants: {
