@@ -999,3 +999,10 @@
   --color-white-a11: var(--white-a11);
   --color-white-a12: var(--white-a12);
 }
+
+/* ─── Variante `dark` ─────────────────────────────────────────────────────────
+ * Déclarée ici plutôt que dans theme.css : c'est ce fichier qui porte l'axe
+ * clair/sombre, via les feuilles `*-dark.css` de Radix scopées sur `.dark`.
+ * -------------------------------------------------------------------------- */
+
+@custom-variant dark (&:is(.dark *));

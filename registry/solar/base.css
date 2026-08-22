@@ -1,0 +1,48 @@
+/* ============================================================================
+ * SolarUI — styles de base
+ * ----------------------------------------------------------------------------
+ * Ce que le design system impose au document lui-même, avant tout composant.
+ * Uniquement des tokens du thème actif : ce fichier suit `data-theme` sans
+ * traitement particulier.
+ * ========================================================================== */
+
+@layer base {
+  * {
+    border-color: var(--color-default-6);
+  }
+
+  body {
+    background-color: var(--color-default-1);
+    color: var(--color-default-12);
+    font-family: var(--font-body);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* ─── Input gradient border ─────────────────────────────────────────────── */
+  [data-slot="input"] {
+    background:
+      linear-gradient(to top, var(--color-default-2), var(--color-default-1)) padding-box,
+      linear-gradient(to bottom, var(--color-default-8), var(--color-default-6)) border-box;
+    border-color: transparent;
+  }
+
+  [data-slot="input"]:disabled {
+    background: var(--color-default-3);
+  }
+
+  [data-slot="input"]:focus-visible {
+    background:
+      linear-gradient(to top, var(--color-default-2), var(--color-default-1)) padding-box,
+      linear-gradient(to bottom, var(--color-default-9), var(--color-default-8)) border-box;
+  }
+
+  [data-slot="input"][aria-invalid="true"] {
+    background:
+      linear-gradient(to top, var(--color-default-2), var(--color-default-1)) padding-box,
+      linear-gradient(to bottom, var(--color-error-7), var(--color-error-7)) border-box;
+  }
+}

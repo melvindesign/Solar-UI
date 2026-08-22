@@ -9,8 +9,8 @@ const bodyVariants = cva(
   {
     variants: {
       size: {
-        default: "text-body tracking-body font-normal",
-        compact: "text-body-compact tracking-body font-normal",
+        default: "text-body leading-relaxed tracking-body font-normal",
+        compact: "text-body-compact leading-relaxed tracking-body font-normal",
       },
     },
     defaultVariants: {

@@ -1,0 +1,83 @@
+/* ============================================================================
+ * SolarUI — mécanique du mouvement
+ * ----------------------------------------------------------------------------
+ * Les FORMES des animations : keyframes, et le vecteur de glissement déduit de
+ * `data-side`. Aucune valeur de temps ni de courbe ici — durées et easings sont
+ * des variables Figma et vivent dans themes/*.css, tout comme les `--animate-*`
+ * qui assemblent forme, durée et courbe.
+ *
+ * Ce découpage a une raison : un thème peut retimer toute l'interface sans
+ * toucher à ce fichier, et une keyframe ajoutée ici profite à tous les thèmes.
+ * ========================================================================== */
+
+/* ─── Direction du glissement ─────────────────────────────────────────────────
+ * Radix pose `data-side` tout seul sur les contenus ancrés, et sheet le porte
+ * aussi. Un composant n'a donc QUE deux classes à écrire — `animate-popover-in`
+ * et `animate-popover-out` — au lieu des quatorze que shadcn empile.
+ *
+ * Convention : le vecteur pointe vers le côté nommé. Sheet glisse depuis ce
+ * côté ; popover fait l'inverse et s'écarte de sa cible, d'où le signe négatif
+ * dans ses keyframes.
+ * -------------------------------------------------------------------------- */
+
+[data-side="top"]    { --solar-dir-x: 0;  --solar-dir-y: -1; }
+[data-side="bottom"] { --solar-dir-x: 0;  --solar-dir-y: 1; }
+[data-side="left"]   { --solar-dir-x: -1; --solar-dir-y: 0; }
+[data-side="right"]  { --solar-dir-x: 1;  --solar-dir-y: 0; }
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to   { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to   { height: 0; }
+}
+
+@keyframes overlay-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes overlay-out { from { opacity: 1; } to { opacity: 0; } }
+
+@keyframes dialog-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes dialog-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.95); }
+}
+
+@keyframes popover-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95)
+      translate(calc(var(--solar-dir-x, 0) * -0.5rem), calc(var(--solar-dir-y, 0) * -0.5rem));
+  }
+  to { opacity: 1; transform: scale(1) translate(0, 0); }
+}
+
+@keyframes popover-out {
+  from { opacity: 1; transform: scale(1) translate(0, 0); }
+  to {
+    opacity: 0;
+    transform: scale(0.95)
+      translate(calc(var(--solar-dir-x, 0) * -0.5rem), calc(var(--solar-dir-y, 0) * -0.5rem));
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translate(calc(var(--solar-dir-x, 0) * 2.5rem), calc(var(--solar-dir-y, 0) * 2.5rem));
+  }
+  to { opacity: 1; transform: translate(0, 0); }
+}
+
+@keyframes sheet-out {
+  from { opacity: 1; transform: translate(0, 0); }
+  to {
+    opacity: 0;
+    transform: translate(calc(var(--solar-dir-x, 0) * 2.5rem), calc(var(--solar-dir-y, 0) * 2.5rem));
+  }
+}

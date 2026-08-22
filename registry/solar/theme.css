@@ -1,22 +1,23 @@
 /* ============================================================================
  * SolarUI — point d'entrée du design system
  * ----------------------------------------------------------------------------
- * Ce fichier assemble les trois collections de variables Figma et déclare leurs
- * tokens auprès de Tailwind. C'est le seul fichier à importer dans globals.css :
+ * Seul fichier à importer dans votre CSS applicatif :
  *
  *     @import "tailwindcss";
  *     @import "./theme.css";
  *
- * Chaîne de dépendance, identique à Figma :
+ * Il n'assemble que des imports. Chaque fichier a une responsabilité unique :
  *
- *     radix.css   (Mode)    couleurs primitives, modes Light / Dark
- *     screen.css  (Screen)  nombres, modes Desktop / Mobile
- *          └──────────────► themes/*.css (Theme)  tokens sémantiques
+ *     radix.css    couleurs primitives Radix + variante `dark`   (Figma « Mode »)
+ *     screen.css   espacement et gammes typographiques           (Figma « Screen »)
+ *     themes/*.css tous les tokens sémantiques                   (Figma « Theme »)
+ *     motion.css   keyframes et vecteurs de glissement           (hors Figma)
+ *     base.css     styles imposés au document
  *
  * Trois axes indépendants se combinent librement :
  *   • clair / sombre     → classe `.dark` sur <html>
  *   • desktop / mobile   → automatique, breakpoint 48rem
- *   • Stellar / Trevia   → attribut `data-theme` sur <html>
+ *   • thème              → attribut `data-theme` sur <html>
  * ========================================================================== */
 
 @import "./radix.css";
@@ -29,7 +30,15 @@
  * L'ORDRE DE CES LIGNES N'A AUCUNE IMPORTANCE. Turbopack réordonne les `@import`
  * entre `next dev` et `next build` : s'appuyer sur l'ordre donnerait un thème
  * par défaut différent selon le mode. Le thème par défaut est donc désigné DANS
- * son propre fichier, par un sélecteur `:where(:root)` que lui seul porte.
+ * son propre fichier, par la FORME de son bloc :
+ *   • le défaut s'écrit `@theme { … }`  — il DÉCLARE les noms auprès de Tailwind
+ *     et fournit les valeurs par défaut ;
+ *   • les autres s'écrivent `:root[data-theme="…"] { … }` — valeurs seules.
+ *
+ * Tailwind range `@theme` dans `@layer theme` ; une règle non-layered l'emporte
+ * toujours sur une règle layered, donc `data-theme` bat le défaut quel que soit
+ * l'ordre des imports. Un simple `:root { --color-brand-9: … }` chez vous le bat
+ * aussi, sans `!important`.
  *
  * Défaut actuel : Stellar → themes/stellar.css
  * ------------------------------------------------------------------------- */
@@ -37,167 +46,259 @@
 @import "./themes/stellar.css";
 @import "./themes/trevia.css";
 
-@custom-variant dark (&:is(.dark *));
+@import "./motion.css";
+@import "./base.css";
 
 /* ============================================================================
- * Constantes du système
+ * Schéma d'un thème
  * ----------------------------------------------------------------------------
- * Tout ce qui est identique dans TOUS les thèmes. Les tokens qui varient d'un
- * thème à l'autre — palettes, polices, tailles de texte, Layout/Field — sont
- * déclarés dans le bloc `@theme` du thème par défaut (themes/stellar.css) et
- * n'apparaissent donc pas ici.
+ * Les 185 tokens qu'un thème peut porter. Généré depuis themes/stellar.css :
+ * toute divergence est un bug.
  *
- * Tailwind fusionne tous les blocs `@theme` du projet, d'où qu'ils viennent.
+ * À copier dans votre CSS pour surcharger le thème actif — retirez le préfixe
+ * « * », et ne gardez que ce que vous redéfinissez : tout token omis conserve la
+ * valeur du thème par défaut. Les intertitres « ── … ── » sont des repères de
+ * lecture, pas du CSS. Les pièges de nommage sont documentés en tête de
+ * themes/stellar.css.
+ *
+ *   :root[data-theme="mon-theme"] {
+ *     --color-brand-9: var(--violet-9);
+ *   }
+ *
+ *   ── Palette / Default ──
+ *   --color-default-1: ;
+ *   --color-default-2: ;
+ *   --color-default-3: ;
+ *   --color-default-4: ;
+ *   --color-default-5: ;
+ *   --color-default-6: ;
+ *   --color-default-7: ;
+ *   --color-default-8: ;
+ *   --color-default-9: ;
+ *   --color-default-10: ;
+ *   --color-default-11: ;
+ *   --color-default-12: ;
+ *
+ *   ── Palette / Brand ──
+ *   --color-brand-1: ;
+ *   --color-brand-2: ;
+ *   --color-brand-3: ;
+ *   --color-brand-4: ;
+ *   --color-brand-5: ;
+ *   --color-brand-6: ;
+ *   --color-brand-7: ;
+ *   --color-brand-8: ;
+ *   --color-brand-9: ;
+ *   --color-brand-10: ;
+ *   --color-brand-11: ;
+ *   --color-brand-12: ;
+ *
+ *   ── Palette / Link ──
+ *   --color-link-1: ;
+ *   --color-link-2: ;
+ *   --color-link-3: ;
+ *   --color-link-4: ;
+ *   --color-link-5: ;
+ *   --color-link-6: ;
+ *   --color-link-7: ;
+ *   --color-link-8: ;
+ *   --color-link-9: ;
+ *   --color-link-10: ;
+ *   --color-link-11: ;
+ *   --color-link-12: ;
+ *
+ *   ── Palette / Error ──
+ *   --color-error-1: ;
+ *   --color-error-2: ;
+ *   --color-error-3: ;
+ *   --color-error-4: ;
+ *   --color-error-5: ;
+ *   --color-error-6: ;
+ *   --color-error-7: ;
+ *   --color-error-8: ;
+ *   --color-error-9: ;
+ *   --color-error-10: ;
+ *   --color-error-11: ;
+ *   --color-error-12: ;
+ *
+ *   ── Palette / Success ──
+ *   --color-success-1: ;
+ *   --color-success-2: ;
+ *   --color-success-3: ;
+ *   --color-success-4: ;
+ *   --color-success-5: ;
+ *   --color-success-6: ;
+ *   --color-success-7: ;
+ *   --color-success-8: ;
+ *   --color-success-9: ;
+ *   --color-success-10: ;
+ *   --color-success-11: ;
+ *   --color-success-12: ;
+ *
+ *   ── Palette / Warning ──
+ *   --color-warning-1: ;
+ *   --color-warning-2: ;
+ *   --color-warning-3: ;
+ *   --color-warning-4: ;
+ *   --color-warning-5: ;
+ *   --color-warning-6: ;
+ *   --color-warning-7: ;
+ *   --color-warning-8: ;
+ *   --color-warning-9: ;
+ *   --color-warning-10: ;
+ *   --color-warning-11: ;
+ *   --color-warning-12: ;
+ *
+ *   ── Palette / Info ──
+ *   --color-info-1: ;
+ *   --color-info-2: ;
+ *   --color-info-3: ;
+ *   --color-info-4: ;
+ *   --color-info-5: ;
+ *   --color-info-6: ;
+ *   --color-info-7: ;
+ *   --color-info-8: ;
+ *   --color-info-9: ;
+ *   --color-info-10: ;
+ *   --color-info-11: ;
+ *   --color-info-12: ;
+ *
+ *   ── Chart / Structure ──
+ *   --color-chart-grid: ;
+ *   --color-chart-label: ;
+ *   --color-chart-track: ;
+ *
+ *   ── Chart / Default ──
+ *   --color-chart-default-solid: ;
+ *   --color-chart-default-medium: ;
+ *   --color-chart-default-subtle: ;
+ *   --color-chart-default-surface: ;
+ *
+ *   ── Chart / Brand ──
+ *   --color-chart-brand-solid: ;
+ *   --color-chart-brand-medium: ;
+ *   --color-chart-brand-subtle: ;
+ *   --color-chart-brand-surface: ;
+ *
+ *   ── Chart / Info ──
+ *   --color-chart-info-solid: ;
+ *   --color-chart-info-medium: ;
+ *   --color-chart-info-subtle: ;
+ *   --color-chart-info-surface: ;
+ *
+ *   ── Chart / Error ──
+ *   --color-chart-error-solid: ;
+ *   --color-chart-error-medium: ;
+ *   --color-chart-error-subtle: ;
+ *   --color-chart-error-surface: ;
+ *
+ *   ── Chart / Success ──
+ *   --color-chart-success-solid: ;
+ *   --color-chart-success-medium: ;
+ *   --color-chart-success-subtle: ;
+ *   --color-chart-success-surface: ;
+ *
+ *   ── Chart / Warning ──
+ *   --color-chart-warning-solid: ;
+ *   --color-chart-warning-medium: ;
+ *   --color-chart-warning-subtle: ;
+ *   --color-chart-warning-surface: ;
+ *
+ *   ── Typography / Font Family ──
+ *   --font-header: ;
+ *   --font-body: ;
+ *   --font-mono: ;
+ *   --font-sans: ;
+ *
+ *   ── Typography / Font Size ──
+ *   --text-display-1: ;
+ *   --text-display-2: ;
+ *   --text-display-3: ;
+ *   --text-display-4: ;
+ *   --text-display-5: ;
+ *   --text-display-6: ;
+ *   --text-title-1: ;
+ *   --text-title-2: ;
+ *   --text-title-3: ;
+ *   --text-title-4: ;
+ *   --text-title-5: ;
+ *   --text-title-6: ;
+ *   --text-label: ;
+ *   --text-label-compact: ;
+ *   --text-body: ;
+ *   --text-body-compact: ;
+ *   --text-code: ;
+ *   --text-code-compact: ;
+ *   --text-avatar-fallback-sm: ;
+ *
+ *   ── Typography / Line Height ──
+ *   --leading-none: ;
+ *   --leading-tight: ;
+ *   --leading-snug: ;
+ *   --leading-normal: ;
+ *   --leading-relaxed: ;
+ *
+ *   ── Typography / Tracking ──
+ *   --tracking-tight: ;
+ *   --tracking-normal: ;
+ *   --tracking-loose: ;
+ *   --tracking-label: ;
+ *   --tracking-body: ;
+ *
+ *   ── Layout / Radius ──
+ *   --radius-badge: ;
+ *   --radius-field: ;
+ *   --radius-card: ;
+ *   --radius-chart-radial: ;
+ *   --radius-chart-bar: ;
+ *
+ *   ── Layout / Size ──
+ *   --spacing-badge: ;
+ *   --spacing-field: ;
+ *   --spacing-card: ;
+ *
+ *   ── Layout / Gap ──
+ *   --gap-badge: ;
+ *   --gap-field: ;
+ *   --gap-card: ;
+ *
+ *   ── Layout / Padding ──
+ *   --padding-xs: ;
+ *   --padding-sm: ;
+ *   --padding-badge: ;
+ *   --padding-field: ;
+ *   --padding-card: ;
+ *
+ *   ── Elevation ──
+ *   --shadow-xs: ;
+ *   --shadow-sm: ;
+ *   --shadow-md: ;
+ *   --shadow-lg: ;
+ *   --shadow-xl: ;
+ *   --shadow-2xl: ;
+ *   --shadow-3xl: ;
+ *
+ *   ── Motion / Duration ──
+ *   --duration-fast: ;
+ *   --duration-normal: ;
+ *   --duration-slow: ;
+ *   --duration-slower: ;
+ *
+ *   ── Motion / Easing ──
+ *   --ease-enter: ;
+ *   --ease-exit: ;
+ *   --ease-standard: ;
+ *   --ease-emphasized: ;
+ *
+ *   ── Motion / Animation ──
+ *   --animate-accordion-down: ;
+ *   --animate-accordion-up: ;
+ *   --animate-overlay-in: ;
+ *   --animate-overlay-out: ;
+ *   --animate-dialog-in: ;
+ *   --animate-dialog-out: ;
+ *   --animate-popover-in: ;
+ *   --animate-popover-out: ;
+ *   --animate-sheet-in: ;
+ *   --animate-sheet-out: ;
  * ========================================================================== */
-
-@theme {
-  /* ─── Hauteurs de ligne — valeurs réelles ───────────────────────────────────
-   * Ni les hauteurs de ligne ni l'interlettrage ne sont des variables Figma :
-   * ce sont des constantes du système, indépendantes du thème et de l'écran.
-   * ------------------------------------------------------------------------ */
-  --text-display-1--line-height: 1.2;
-  --text-display-2--line-height: 1.2;
-  --text-display-3--line-height: 1.3;
-  --text-display-4--line-height: 1.3;
-  --text-display-5--line-height: 1.3;
-  --text-display-6--line-height: 1.3;
-  --text-title-1--line-height: 1.3;
-  --text-title-2--line-height: 1.3;
-  --text-title-3--line-height: 1.3;
-  --text-title-4--line-height: 1.3;
-  --text-title-5--line-height: 1.3;
-  --text-title-6--line-height: 1.3;
-  --text-label--line-height: 1.4;
-  --text-label-compact--line-height: 1.4;
-  --text-body--line-height: 1.5;
-  --text-body-compact--line-height: 1.5;
-  --text-code--line-height: 1;
-  --text-code-compact--line-height: 1;
-  --text-avatar-fallback-sm--line-height: 1;
-
-  /* ─── Interlettrage — valeurs réelles ───────────────────────────────────── */
-  --tracking-display-tight: -0.02em;
-  --tracking-display-normal: -0.01em;
-  --tracking-display-loose: 0.01em;
-  --tracking-label: 0.015em;
-  --tracking-body: 0.005em;
-
-  /* ─── Elevation — valeurs réelles, communes à tous les thèmes ───────────── */
-  --shadow-xs: 0 1px 2px 0 var(--black-a1);
-  --shadow-sm: 0 1px 2px 0 var(--black-a1), 0 1px 3px 0 var(--black-a1);
-  --shadow-md: 0 2px 4px -2px var(--black-a1), 0 4px 8px -2px var(--black-a2);
-  --shadow-lg: 0 4px 6px -2px var(--black-a1), 0 12px 16px -4px var(--black-a2);
-  --shadow-xl: 0 8px 8px -4px var(--black-a1), 0 20px 24px -4px var(--black-a2);
-  --shadow-2xl: 0 24px 48px -12px var(--black-a4);
-  --shadow-3xl: 0 32px 64px -12px var(--black-a3);
-
-  /* ─── Animations — valeurs réelles ──────────────────────────────────────── */
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-}
-
-@keyframes accordion-down {
-  from { height: 0; }
-  to   { height: var(--radix-accordion-content-height); }
-}
-
-@keyframes accordion-up {
-  from { height: var(--radix-accordion-content-height); }
-  to   { height: 0; }
-}
-
-/* ============================================================================
- * Tokens dérivés
- * ----------------------------------------------------------------------------
- * Les noms shadcn sont conservés pour les composants pas encore migrés. Étant
- * dérivés des tokens de thème, ils suivent `data-theme` sans traitement.
- * ========================================================================== */
-
-:root {
-  --background: var(--color-default-1);
-  --foreground: var(--color-default-12);
-  --card: var(--color-default-2);
-  --card-foreground: var(--color-default-12);
-  --popover: var(--color-default-2);
-  --popover-foreground: var(--color-default-12);
-  --primary: var(--color-brand-9);
-  --primary-foreground: var(--color-brand-1);
-  --secondary: var(--color-default-3);
-  --secondary-foreground: var(--color-default-12);
-  --muted: var(--color-default-3);
-  --muted-foreground: var(--color-default-11);
-  --accent: var(--color-default-3);
-  --accent-foreground: var(--color-default-12);
-  --destructive: var(--color-error-9);
-  --destructive-foreground: var(--color-error-1);
-  --border: var(--color-default-6);
-  --input: var(--color-default-7);
-  --ring: var(--color-brand-8);
-  --radius: var(--radius-field);
-
-  /* ─── Sidebar ───────────────────────────────────────────────────────────── */
-  --sidebar: var(--color-default-2);
-  --sidebar-foreground: var(--color-default-11);
-  --sidebar-primary: var(--color-brand-9);
-  --sidebar-primary-foreground: var(--color-brand-1);
-  --sidebar-accent: var(--color-default-3);
-  --sidebar-accent-foreground: var(--color-default-12);
-  --sidebar-border: var(--color-default-6);
-  --sidebar-ring: var(--color-brand-8);
-}
-
-@theme inline {
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-}
-
-/* ============================================================================
- * Base
- * ========================================================================== */
-
-@layer base {
-  * {
-    border-color: var(--color-default-6);
-  }
-
-  body {
-    background-color: var(--color-default-1);
-    color: var(--color-default-12);
-    font-family: var(--font-body);
-  }
-
-  button:not(:disabled),
-  [role="button"]:not(:disabled) {
-    cursor: pointer;
-  }
-
-  /* ─── Input gradient border ─────────────────────────────────────────────── */
-  [data-slot="input"] {
-    background:
-      linear-gradient(to top, var(--color-default-2), var(--color-default-1)) padding-box,
-      linear-gradient(to bottom, var(--color-default-8), var(--color-default-6)) border-box;
-    border-color: transparent;
-  }
-
-  [data-slot="input"]:disabled {
-    background: var(--color-default-3);
-  }
-
-  [data-slot="input"]:focus-visible {
-    background:
-      linear-gradient(to top, var(--color-default-2), var(--color-default-1)) padding-box,
-      linear-gradient(to bottom, var(--color-default-9), var(--color-default-8)) border-box;
-  }
-
-  [data-slot="input"][aria-invalid="true"] {
-    background:
-      linear-gradient(to top, var(--color-default-2), var(--color-default-1)) padding-box,
-      linear-gradient(to bottom, var(--color-error-7), var(--color-error-7)) border-box;
-  }
-}

@@ -1,15 +1,16 @@
 /* ============================================================================
  * SolarUI — thème Trevia
  * ----------------------------------------------------------------------------
- * Mode « Theme 2 » de la collection Figma "Theme".
+ * Mode « Trevia » de la collection Figma "Theme".
  *
- * Thème NON par défaut : il ne s'applique que sur `data-theme="trevia"`.
- * Le thème par défaut est celui qui porte en plus un sélecteur `:where(:root)`
- * — voir stellar.css et l'en-tête de theme.css.
+ * Thème NON par défaut : il ne s'applique que sur `data-theme="trevia"`, et ne
+ * porte donc que des VALEURS. Les noms sont déclarés une seule fois par le bloc
+ * `@theme` du thème par défaut — voir stellar.css, dont l'en-tête recense aussi
+ * les pièges de nommage communs aux deux fichiers.
  * ========================================================================== */
 
 :root[data-theme="trevia"] {
-  /* ─── Palette / Default → slate ─────────────────────────────────────────── */
+  /* ─── Palette / Default ────────────────────────────────────────────────── */
   --color-default-1: var(--slate-1);
   --color-default-2: var(--slate-2);
   --color-default-3: var(--slate-3);
@@ -23,7 +24,7 @@
   --color-default-11: var(--slate-11);
   --color-default-12: var(--slate-12);
 
-  /* ─── Palette / Brand → blue ────────────────────────────────────────────── */
+  /* ─── Palette / Brand ──────────────────────────────────────────────────── */
   --color-brand-1: var(--blue-1);
   --color-brand-2: var(--blue-2);
   --color-brand-3: var(--blue-3);
@@ -37,7 +38,7 @@
   --color-brand-11: var(--blue-11);
   --color-brand-12: var(--blue-12);
 
-  /* ─── Palette / Link → indigo ───────────────────────────────────────────── */
+  /* ─── Palette / Link ───────────────────────────────────────────────────── */
   --color-link-1: var(--indigo-1);
   --color-link-2: var(--indigo-2);
   --color-link-3: var(--indigo-3);
@@ -51,7 +52,7 @@
   --color-link-11: var(--indigo-11);
   --color-link-12: var(--indigo-12);
 
-  /* ─── Palette / Error → tomato ──────────────────────────────────────────── */
+  /* ─── Palette / Error ──────────────────────────────────────────────────── */
   --color-error-1: var(--tomato-1);
   --color-error-2: var(--tomato-2);
   --color-error-3: var(--tomato-3);
@@ -65,7 +66,7 @@
   --color-error-11: var(--tomato-11);
   --color-error-12: var(--tomato-12);
 
-  /* ─── Palette / Success → jade ──────────────────────────────────────────── */
+  /* ─── Palette / Success ────────────────────────────────────────────────── */
   --color-success-1: var(--jade-1);
   --color-success-2: var(--jade-2);
   --color-success-3: var(--jade-3);
@@ -79,7 +80,7 @@
   --color-success-11: var(--jade-11);
   --color-success-12: var(--jade-12);
 
-  /* ─── Palette / Warning → orange ────────────────────────────────────────── */
+  /* ─── Palette / Warning ────────────────────────────────────────────────── */
   --color-warning-1: var(--orange-1);
   --color-warning-2: var(--orange-2);
   --color-warning-3: var(--orange-3);
@@ -93,7 +94,7 @@
   --color-warning-11: var(--orange-11);
   --color-warning-12: var(--orange-12);
 
-  /* ─── Palette / Info → cyan ─────────────────────────────────────────────── */
+  /* ─── Palette / Info ───────────────────────────────────────────────────── */
   --color-info-1: var(--cyan-1);
   --color-info-2: var(--cyan-2);
   --color-info-3: var(--cyan-3);
@@ -107,45 +108,141 @@
   --color-info-11: var(--cyan-11);
   --color-info-12: var(--cyan-12);
 
-  /* ─── Typography / Font Family ──────────────────────────────────────────── */
+  /* ─── Chart / Structure ────────────────────────────────────────────────── */
+  --color-chart-grid: var(--slate-a6);
+  --color-chart-label: var(--slate-a11);
+  --color-chart-track: var(--slate-a3);
+
+  /* ─── Chart / Default ──────────────────────────────────────────────────── */
+  --color-chart-default-solid: var(--slate-a9);
+  --color-chart-default-medium: var(--slate-a7);
+  --color-chart-default-subtle: var(--slate-a5);
+  --color-chart-default-surface: var(--slate-a4);
+
+  /* ─── Chart / Brand ────────────────────────────────────────────────────── */
+  --color-chart-brand-solid: var(--blue-a9);
+  --color-chart-brand-medium: var(--blue-a7);
+  --color-chart-brand-subtle: var(--blue-a5);
+  --color-chart-brand-surface: var(--blue-a5);
+
+  /* ─── Chart / Info ─────────────────────────────────────────────────────── */
+  --color-chart-info-solid: var(--cyan-a9);
+  --color-chart-info-medium: var(--cyan-a7);
+  --color-chart-info-subtle: var(--cyan-a5);
+  --color-chart-info-surface: var(--cyan-a5);
+
+  /* ─── Chart / Error ────────────────────────────────────────────────────── */
+  --color-chart-error-solid: var(--tomato-a9);
+  --color-chart-error-medium: var(--tomato-a7);
+  --color-chart-error-subtle: var(--tomato-a5);
+  --color-chart-error-surface: var(--tomato-a5);
+
+  /* ─── Chart / Success ──────────────────────────────────────────────────── */
+  --color-chart-success-solid: var(--jade-a9);
+  --color-chart-success-medium: var(--jade-a7);
+  --color-chart-success-subtle: var(--jade-a5);
+  --color-chart-success-surface: var(--jade-a5);
+
+  /* ─── Chart / Warning ──────────────────────────────────────────────────── */
+  --color-chart-warning-solid: var(--orange-a9);
+  --color-chart-warning-medium: var(--orange-a7);
+  --color-chart-warning-subtle: var(--orange-a5);
+  --color-chart-warning-surface: var(--orange-a4);
+
+  /* ─── Typography / Font Family ─────────────────────────────────────────── */
   --font-header: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  /* ─── Typography / Font Size → Type Scale / Medium ──────────────────────── */
+  /* ─── Typography / Font Size ───────────────────────────────────────────── */
   --text-display-1: var(--solar-type-medium-1);
   --text-display-2: var(--solar-type-medium-2);
   --text-display-3: var(--solar-type-medium-3);
   --text-display-4: var(--solar-type-medium-4);
   --text-display-5: var(--solar-type-medium-5);
   --text-display-6: var(--solar-type-medium-6);
-
   --text-title-1: var(--solar-type-medium-4);
   --text-title-2: var(--solar-type-medium-5);
   --text-title-3: var(--solar-type-medium-6);
   --text-title-4: var(--solar-type-medium-7);
   --text-title-5: var(--solar-type-medium-8);
   --text-title-6: var(--solar-type-medium-9);
-
   --text-label: var(--solar-type-medium-10);
   --text-label-compact: var(--solar-type-medium-11);
-
   --text-body: var(--solar-type-medium-9);
   --text-body-compact: var(--solar-type-medium-10);
-
   --text-code: var(--solar-type-medium-9);
   --text-code-compact: var(--solar-type-medium-11);
-
   --text-avatar-fallback-sm: var(--solar-type-medium-11);
 
-  /* ─── Layout / Field ────────────────────────────────────────────────────── */
-  --radius-field-inner: calc(var(--spacing) * 1.5); /* Sizes/0,375 */
-  --radius-field: calc(var(--spacing) * 3); /* Sizes/0,75 */
-  --spacing-field-padding: calc(var(--spacing) * 1.5); /* Sizes/0,375 */
-  --spacing-field: calc(var(--spacing) * 10); /* Sizes/2,5 */
-  --spacing-field-gap: calc(var(--spacing) * 1); /* Sizes/0,25 */
+  /* ─── Typography / Line Height ─────────────────────────────────────────── */
+  --leading-none: 1;
+  --leading-tight: 1.2;
+  --leading-snug: 1.3;
+  --leading-normal: 1.4;
+  --leading-relaxed: 1.5;
 
-  /* ─── Illustration / Shape ──────────────────────────────────────────────── */
-  --solar-illustration-focal: "Blob";
-  --solar-illustration-detail: "Circle";
+  /* ─── Typography / Tracking ────────────────────────────────────────────── */
+  --tracking-tight: -0.02em;
+  --tracking-normal: -0.01em;
+  --tracking-loose: 0.01em;
+  --tracking-label: 0.015em;
+  --tracking-body: 0.005em;
+
+  /* ─── Layout / Radius ──────────────────────────────────────────────────── */
+  --radius-badge: calc(var(--spacing) * 1.5);
+  --radius-field: calc(var(--spacing) * 3);
+  --radius-card: calc(var(--spacing) * 6);
+  --radius-chart-radial: calc(var(--spacing) * 40);
+  --radius-chart-bar: calc(var(--spacing) * 3);
+
+  /* ─── Layout / Size ────────────────────────────────────────────────────── */
+  --spacing-badge: calc(var(--spacing) * 9);
+  --spacing-field: calc(var(--spacing) * 10);
+  --spacing-card: calc(var(--spacing) * 12);
+
+  /* ─── Layout / Gap ─────────────────────────────────────────────────────── */
+  --gap-badge: calc(var(--spacing) * 0.5);
+  --gap-field: calc(var(--spacing) * 1);
+  --gap-card: calc(var(--spacing) * 3);
+
+  /* ─── Layout / Padding ─────────────────────────────────────────────────── */
+  --padding-xs: calc(var(--spacing) * 0.5);
+  --padding-sm: calc(var(--spacing) * 1.5);
+  --padding-badge: calc(var(--spacing) * 2);
+  --padding-field: calc(var(--spacing) * 3);
+  --padding-card: calc(var(--spacing) * 4);
+
+  /* ─── Elevation ────────────────────────────────────────────────────────── */
+  --shadow-xs: 0 1px 2px 0 var(--black-a1);
+  --shadow-sm: 0 1px 2px 0 var(--black-a1), 0 1px 3px 0 var(--black-a1);
+  --shadow-md: 0 2px 4px -2px var(--black-a1), 0 4px 8px -2px var(--black-a2);
+  --shadow-lg: 0 4px 6px -2px var(--black-a1), 0 12px 16px -4px var(--black-a2);
+  --shadow-xl: 0 8px 8px -4px var(--black-a1), 0 20px 24px -4px var(--black-a2);
+  --shadow-2xl: 0 24px 48px -12px var(--black-a4);
+  --shadow-3xl: 0 32px 64px -12px var(--black-a3);
+
+  /* ─── Motion / Duration ────────────────────────────────────────────────── */
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
+
+  /* ─── Motion / Easing ──────────────────────────────────────────────────── */
+  --ease-enter: cubic-bezier(0, 0, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ─── Motion / Animation ───────────────────────────────────────────────── */
+  --animate-accordion-down: accordion-down var(--duration-normal) var(--ease-enter);
+  --animate-accordion-up: accordion-up var(--duration-normal) var(--ease-enter);
+  --animate-overlay-in: overlay-in var(--duration-normal) var(--ease-enter);
+  --animate-overlay-out: overlay-out var(--duration-fast) var(--ease-exit);
+  --animate-dialog-in: dialog-in var(--duration-normal) var(--ease-enter);
+  --animate-dialog-out: dialog-out var(--duration-fast) var(--ease-exit);
+  --animate-popover-in: popover-in var(--duration-fast) var(--ease-enter);
+  --animate-popover-out: popover-out var(--duration-fast) var(--ease-exit);
+  --animate-sheet-in: sheet-in var(--duration-slow) var(--ease-enter);
+  --animate-sheet-out: sheet-out var(--duration-normal) var(--ease-exit);
 }

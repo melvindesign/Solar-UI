@@ -9,7 +9,10 @@
  * ci-dessous. Les composants n'ont donc jamais à écrire de variante `md:` pour
  * l'échelle : ils consomment le token, l'échelle suit le viewport.
  *
- * Toutes les valeurs Mobile valent exactement Desktop × 1,25.
+ * Les 27 Sizes valent exactement Desktop × 1,25 en Mobile. Les deux gammes
+ * typographiques, elles, ne suivent PAS ce facteur : elles s'aplatissent en
+ * Mobile (Small/1 passe de 41,04px à 30,25px) pour resserrer l'écart entre le
+ * corps de texte et les titres sur petit écran.
  * ========================================================================== */
 
 /* ─── Breakpoint ──────────────────────────────────────────────────────────── */
@@ -22,15 +25,34 @@
    * Redéfinir `--spacing` suffit donc à rendre responsive TOUTE la famille
    * d'utilitaires (`p-*`, `gap-*`, `h-*`, `w-*`, `m-*`, `space-*`…).
    *
-   *   Figma          Desktop   Mobile    Utilitaire Tailwind
-   *   Sizes/0,125      2px      2.5px    0.5
-   *   Sizes/0,25       4px      5px      1
-   *   Sizes/0,375      6px      7.5px    1.5
-   *   Sizes/0,50       8px     10px      2
-   *   Sizes/0,75      12px     15px      3
-   *   Sizes/1         16px     20px      4
-   *   …
-   *   Sizes/10       160px    200px      40
+   *   Figma          Desktop    Mobile    Tailwind
+   *   Sizes/0,125        2px     2.5px         0.5
+   *   Sizes/0,25         4px       5px           1
+   *   Sizes/0,375        6px     7.5px         1.5
+   *   Sizes/0,50         8px      10px           2
+   *   Sizes/0,75        12px      15px           3
+   *   Sizes/1           16px      20px           4
+   *   Sizes/1,25        20px      25px           5
+   *   Sizes/1,50        24px      30px           6
+   *   Sizes/1,75        28px      35px           7
+   *   Sizes/2           32px      40px           8
+   *   Sizes/2,25        36px      45px           9
+   *   Sizes/2,5         40px      50px          10
+   *   Sizes/2,75        44px      55px          11
+   *   Sizes/3           48px      60px          12
+   *   Sizes/3,25        52px      65px          13
+   *   Sizes/3,5         56px      70px          14
+   *   Sizes/3,75        60px      75px          15
+   *   Sizes/4           64px      80px          16
+   *   Sizes/4,25        68px      85px          17
+   *   Sizes/4,50        72px      90px          18
+   *   Sizes/4,75        76px      95px          19
+   *   Sizes/5           80px     100px          20
+   *   Sizes/6           96px     120px          24
+   *   Sizes/7          112px     140px          28
+   *   Sizes/8          128px     160px          32
+   *   Sizes/9          144px     180px          36
+   *   Sizes/10         160px     200px          40
    */
   --spacing: 0.25rem;
 
@@ -51,7 +73,7 @@
   --solar-type-small-12: 0.7025rem;
 
   /* ─── Type Scale / Medium ───────────────────────────────────────────────
-   * Gamme typographique utilisée par le thème 2.
+   * Gamme typographique utilisée par le thème Trevia.
    */
   --solar-type-medium-1: 4.3005rem;
   --solar-type-medium-2: 3.5835rem;

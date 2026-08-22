@@ -9,12 +9,12 @@ const titleVariants = cva(
   {
     variants: {
       size: {
-        "1": "text-title-1 tracking-display-tight font-semibold",
-        "2": "text-title-2 tracking-display-tight font-semibold",
-        "3": "text-title-3 tracking-display-normal font-medium",
-        "4": "text-title-4 tracking-display-normal font-medium",
-        "5": "text-title-5 tracking-display-loose font-medium",
-        "6": "text-title-6 tracking-display-loose font-medium",
+        "1": "text-title-1 leading-snug tracking-tight font-semibold",
+        "2": "text-title-2 leading-snug tracking-tight font-semibold",
+        "3": "text-title-3 leading-snug tracking-normal font-medium",
+        "4": "text-title-4 leading-snug tracking-normal font-medium",
+        "5": "text-title-5 leading-snug tracking-loose font-medium",
+        "6": "text-title-6 leading-snug tracking-loose font-medium",
       },
     },
     defaultVariants: {

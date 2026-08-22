@@ -9,12 +9,12 @@ const displayVariants = cva(
   {
     variants: {
       size: {
-        "1": "text-display-1 tracking-display-tight font-semibold",
-        "2": "text-display-2 tracking-display-tight font-semibold",
-        "3": "text-display-3 tracking-display-normal font-medium",
-        "4": "text-display-4 tracking-display-normal font-medium",
-        "5": "text-display-5 tracking-display-loose font-medium",
-        "6": "text-display-6 tracking-display-loose font-medium",
+        "1": "text-display-1 leading-tight tracking-tight font-semibold",
+        "2": "text-display-2 leading-tight tracking-tight font-semibold",
+        "3": "text-display-3 leading-snug tracking-normal font-medium",
+        "4": "text-display-4 leading-snug tracking-normal font-medium",
+        "5": "text-display-5 leading-snug tracking-loose font-medium",
+        "6": "text-display-6 leading-snug tracking-loose font-medium",
       },
     },
     defaultVariants: {
