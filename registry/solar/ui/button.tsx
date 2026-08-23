@@ -5,7 +5,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "focus-visible:ring-default-8 aria-invalid:ring-error-7 aria-invalid:border-error-8 border border-transparent bg-clip-padding text-label tracking-body font-medium focus-visible:ring-2 aria-invalid:ring-3 active:translate-y-px [&_svg:not([class*='size-'])]:size-4 group/button inline-flex flex-row shrink-0 items-center justify-center whitespace-nowrap transition-all outline-none select-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 relative overflow-hidden",
+  "focus-visible:ring-default-8 aria-invalid:ring-error-7 aria-invalid:border-error-8 border border-transparent bg-clip-padding text-label leading-none tracking-body font-medium focus-visible:ring-2 aria-invalid:ring-3 active:translate-y-px [&_svg:not([class*='size-'])]:size-4 group/button inline-flex flex-row shrink-0 items-center justify-center whitespace-nowrap transition-all outline-none select-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 relative overflow-hidden",
   {
     variants: {
       variant: {
@@ -16,14 +16,11 @@ const buttonVariants = cva(
         destructive: "bg-error-3 hover:bg-error-4 text-error-11",
         link: "text-brand-11 underline-offset-4 hover:underline",
       },
-      /* Les paddings horizontaux retranchent 1px : le stroke Figma est intérieur
-       * et donc compris dans la largeur, là où le padding CSS part de l'intérieur
-       * de la bordure. Sans ça un bouton icon-only ferait 38×36 au lieu d'un carré. */
       size: {
         default:
-          "rounded-field min-h-field gap-2 py-1 px-[calc(var(--spacing)*2-1px)] [&>svg]:mx-0.5",
+          "rounded-field min-h-field gap-2 py-1 px-[calc(var(--padding-field)-1px)] [&>svg]:mx-(--padding-xs)",
         compact:
-          "rounded-[calc(var(--radius-field)-2px)] min-h-[calc(var(--spacing)*7.5)] py-1 px-[calc(var(--spacing)-1px)] [&>svg]:mx-1.5 [&_svg:not([class*='size-'])]:size-2.5",
+          "rounded-field min-h-badge gap-2 py-1 px-[calc(var(--padding-badge)-1px)] [&>svg]:mx-(--padding-xs) [&_svg:not([class*='size-'])]:size-2.5",
       },
     },
     defaultVariants: {
