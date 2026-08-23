@@ -1,8 +1,12 @@
+import ClosingSection from './components/ClosingSection'
 import FooterSection from './components/FooterSection'
 import HeroSection from './components/HeroSection'
+import McpSection from './components/McpSection'
 import Navbar from './components/Navbar'
 import ShowcaseSection from './components/ShowcaseSection'
 import TechLogosSection from './components/TechLogosSection'
+import ThemeFileSection from './components/ThemeFileSection'
+import TokenParitySection from './components/TokenParitySection'
 
 export default function HomePage() {
   return (
@@ -12,6 +16,10 @@ export default function HomePage() {
         <HeroSection />
         <ShowcaseSection />
         <TechLogosSection />
+        <TokenParitySection />
+        <ThemeFileSection />
+        <McpSection />
+        <ClosingSection />
       </main>
       <FooterSection />
     </>

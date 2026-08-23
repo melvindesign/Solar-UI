@@ -71,11 +71,11 @@ function CommandInput({
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
     <div data-slot="command-input-wrapper" className="p-1 pb-0">
-      <InputGroup className="bg-default-3 border-default-7 h-8! rounded-lg! shadow-none! *:data-[slot=input-group-addon]:pl-2!">
+      <InputGroup className="bg-default-3 border-default-7 h-8! rounded-field! shadow-none! *:data-[slot=input-group-addon]:pl-2!">
         <CommandPrimitive.Input
           data-slot="command-input"
           className={cn(
-            "w-full text-sm outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
+            "w-full text-label outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
             className
           )}
           {...props}
@@ -111,7 +111,7 @@ function CommandEmpty({
   return (
     <CommandPrimitive.Empty
       data-slot="command-empty"
-      className={cn("py-6 text-center text-sm", className)}
+      className={cn("py-6 text-center text-body-compact", className)}
       {...props}
     />
   )
@@ -124,7 +124,7 @@ function CommandGroup({
   return (
     <CommandPrimitive.Group
       data-slot="command-group"
-      className={cn("text-default-12 **:[[cmdk-group-heading]]:text-default-11 overflow-hidden p-1 **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium", className)}
+      className={cn("text-default-12 **:[[cmdk-group-heading]]:text-default-11 overflow-hidden p-1 **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-label-compact **:[[cmdk-group-heading]]:font-medium", className)}
       {...props}
     />
   )
@@ -152,7 +152,7 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "hover:bg-default-3 data-selected:text-default-12 data-selected:*:[svg]:text-default-12 relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none in-data-[slot=dialog-content]:rounded-lg! [&_svg:not([class*='size-'])]:size-4 group/command-item data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "hover:bg-default-3 data-selected:text-default-12 data-selected:*:[svg]:text-default-12 relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-label outline-hidden select-none in-data-[slot=dialog-content]:rounded-lg! [&_svg:not([class*='size-'])]:size-4 group/command-item data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       {...props}
@@ -170,7 +170,7 @@ function CommandShortcut({
   return (
     <span
       data-slot="command-shortcut"
-      className={cn("text-default-11 group-data-selected/command-item:text-default-12 ml-auto text-xs tracking-widest", className)}
+      className={cn("text-default-11 group-data-selected/command-item:text-default-12 ml-auto text-label-compact tracking-widest", className)}
       {...props}
     />
   )

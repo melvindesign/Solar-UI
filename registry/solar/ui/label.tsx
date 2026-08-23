@@ -7,12 +7,12 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const labelVariants = cva(
-  "font-sans font-medium text-default-12 tracking-label flex items-center gap-2 select-none group-data-[disabled=true]:opacity-50 peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none peer-disabled:cursor-not-allowed",
+  "font-body font-medium text-default-12 flex items-center gap-2 select-none group-data-[disabled=true]:opacity-50 peer-disabled:opacity-50 group-data-[disabled=true]:pointer-events-none peer-disabled:cursor-not-allowed",
   {
     variants: {
       size: {
-        default: "text-label",
-        compact: "text-label-compact",
+        default: "text-label leading-normal tracking-label",
+        compact: "text-label-compact leading-normal tracking-label",
       },
     },
     defaultVariants: {

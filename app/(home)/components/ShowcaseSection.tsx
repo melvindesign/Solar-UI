@@ -152,7 +152,7 @@ function InvoiceTable() {
                 <TableCell className="pr-2 text-right">
                   <div className="flex items-center justify-end gap-1">
                     <span>{row.amount}</span>
-                    <Button variant="ghost" size="icon" className="size-6">
+                    <Button variant="ghost" className="size-6">
                       <DotsThree size={14} />
                     </Button>
                   </div>
@@ -368,7 +368,7 @@ const usersData = [
 ]
 
 const usersConfig = {
-  v: { label: 'Users', color: 'var(--orange-9)' },
+  v: { label: 'Users', color: 'var(--color-brand-9)' },
 } satisfies ChartConfig
 
 function ActiveUsersCard() {
@@ -390,14 +390,14 @@ function ActiveUsersCard() {
             <AreaChart data={usersData} margin={{ top: 2, right: 0, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="usersGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--orange-9)" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="var(--orange-9)" stopOpacity={0} />
+                  <stop offset="5%" stopColor="var(--color-brand-9)" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="var(--color-brand-9)" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <Area
                 type="monotone"
                 dataKey="v"
-                stroke="var(--orange-9)"
+                stroke="var(--color-brand-9)"
                 strokeWidth={2}
                 fill="url(#usersGrad)"
                 dot={false}
@@ -493,7 +493,7 @@ export default function ShowcaseSection() {
         className="pointer-events-none absolute bottom-0 left-0 right-0 h-96"
         style={{
           background:
-            'radial-gradient(ellipse 80% 60% at 50% 100%, var(--orange-5), transparent)',
+            'radial-gradient(ellipse 80% 60% at 50% 100%, var(--color-brand-5), transparent)',
           opacity: 0.3,
         }}
       />

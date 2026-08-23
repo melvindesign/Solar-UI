@@ -60,18 +60,59 @@ Install the Solar UI theme, which applies the design tokens and visual style acr
 npx shadcn@latest add https://www.solar-ui.com/r/solar-ui.json
 ```
 
-This creates `src/app/solar-theme.css` with all the Solar UI CSS variables.
+This creates the token files in `src/app/`, mirroring the three Figma variable collections:
+
+| File | Figma collection | Contents |
+| --- | --- | --- |
+| `radix.css` | Mode | Radix Colors primitives, light and dark |
+| `screen.css` | Screen | Sizes and type scales, desktop and mobile |
+| `themes/stellar.css`, `themes/trevia.css` | Theme | Semantic tokens, one file per theme |
+| `theme.css` | — | Entry point: imports the above and exposes them to Tailwind |
 
 ### Import the theme in globals.css
 
-Open `src/app/globals.css` and add the Solar UI theme import **at the very top**, before `@import "tailwindcss"`:
+Open `src/app/globals.css` and import `theme.css` right after Tailwind. It pulls in the other files itself:
 
 ```css filename="src/app/globals.css" copy
-@import "./solar-theme.css";
 @import "tailwindcss";
+@import "./theme.css";
 ```
 
-This ensures the Solar UI design tokens are loaded before Tailwind processes your styles.
+### Choose a theme
+
+The default theme is the one written as a `@theme` block. That single block both declares the token names to Tailwind — without `--color-brand-9`, the class `bg-brand-9` does not exist — and supplies the default values. Other themes only carry a `data-theme` rule.
+
+```css filename="src/app/themes/stellar.css"
+@theme {                        /* ← makes this the default theme */
+  --color-brand-9: var(--orange-9);
+}
+```
+
+```css filename="src/app/themes/trevia.css"
+:root[data-theme="trevia"] {    /* applies only when selected */
+  --color-brand-9: var(--blue-9);
+}
+```
+
+Tailwind writes `@theme` into `@layer theme`, and an unlayered rule always beats a layered one whatever its specificity — so a `data-theme` rule reliably overrides the default.
+
+Import order is irrelevant: Turbopack reorders `@import` between dev and build, so relying on it would give you a different default in each mode. To promote another theme, move the `@theme` wrapper into its file and turn the current default back into a `:root[data-theme="stellar"]` rule.
+
+Every imported theme stays reachable at runtime — set `data-theme` on `<html>` to switch, and combine it freely with the `dark` class:
+
+```html
+<html data-theme="trevia" class="dark">
+```
+
+### Override a token
+
+Theme defaults are declared with `:where(:root)`, which has zero specificity. A plain `:root` rule in your own stylesheet overrides any of them, no `!important` needed:
+
+```css filename="src/app/globals.css" copy
+:root {
+  --color-brand-9: var(--violet-9);
+}
+```
 
 ### Add your first component
 

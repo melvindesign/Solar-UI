@@ -90,7 +90,7 @@ function ContextMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "focus:bg-default-3 focus:text-default-12 data-[variant=destructive]:text-error-11 data-[variant=destructive]:focus:bg-error-3 data-[variant=destructive]:focus:text-error-11 data-[variant=destructive]:*:[svg]:text-error-11 focus:*:[svg]:text-default-12 gap-1.5 rounded-md px-1.5 py-1 text-sm data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 group/context-menu-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "focus:bg-default-3 focus:text-default-12 data-[variant=destructive]:text-error-11 data-[variant=destructive]:focus:bg-error-3 data-[variant=destructive]:focus:text-error-11 data-[variant=destructive]:*:[svg]:text-error-11 focus:*:[svg]:text-default-12 gap-1.5 rounded-md px-1.5 py-1 text-label data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 group/context-menu-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       {...props}
@@ -111,7 +111,7 @@ function ContextMenuSubTrigger({
       data-slot="context-menu-sub-trigger"
       data-inset={inset}
       className={cn(
-        "focus:bg-default-3 focus:text-default-12 data-open:bg-default-3 data-open:text-default-12 gap-1.5 rounded-md px-1.5 py-1 text-sm data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 flex cursor-default items-center outline-hidden select-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "focus:bg-default-3 focus:text-default-12 data-open:bg-default-3 data-open:text-default-12 gap-1.5 rounded-md px-1.5 py-1 text-label data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 flex cursor-default items-center outline-hidden select-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       {...props}
@@ -149,7 +149,7 @@ function ContextMenuCheckboxItem({
       data-slot="context-menu-checkbox-item"
       data-inset={inset}
       className={cn(
-        "focus:bg-default-3 focus:text-default-12 gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "focus:bg-default-3 focus:text-default-12 gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-label data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       checked={checked}
@@ -179,7 +179,7 @@ function ContextMenuRadioItem({
       data-slot="context-menu-radio-item"
       data-inset={inset}
       className={cn(
-        "focus:bg-default-3 focus:text-default-12 gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "focus:bg-default-3 focus:text-default-12 gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-label data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       {...props}
@@ -206,7 +206,7 @@ function ContextMenuLabel({
     <ContextMenuPrimitive.Label
       data-slot="context-menu-label"
       data-inset={inset}
-      className={cn("text-default-11 px-1.5 py-1 text-xs font-medium data-inset:pl-7", className)}
+      className={cn("text-default-11 px-1.5 py-1 text-label-compact font-medium data-inset:pl-7", className)}
       {...props}
     />
   )
@@ -232,7 +232,7 @@ function ContextMenuShortcut({
   return (
     <span
       data-slot="context-menu-shortcut"
-      className={cn("text-default-11 group-focus/context-menu-item:text-default-12 ml-auto text-xs tracking-widest", className)}
+      className={cn("text-default-11 group-focus/context-menu-item:text-default-12 ml-auto text-label-compact tracking-widest", className)}
       {...props}
     />
   )

@@ -53,7 +53,7 @@ function MenubarTrigger({
     <MenubarPrimitive.Trigger
       data-slot="menubar-trigger"
       className={cn(
-        "hover:bg-default-4 aria-expanded:bg-default-3 rounded-sm px-1.5 py-[2px] text-sm font-medium flex items-center outline-hidden select-none",
+        "hover:bg-default-4 aria-expanded:bg-default-3 rounded-sm px-1.5 py-[2px] text-label font-medium flex items-center outline-hidden select-none",
         className
       )}
       {...props}
@@ -97,7 +97,7 @@ function MenubarItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "focus:bg-default-3 focus:text-default-12 data-[variant=destructive]:text-error-11 data-[variant=destructive]:focus:bg-error-3 data-[variant=destructive]:focus:text-error-11 data-[variant=destructive]:*:[svg]:text-error-11! not-data-[variant=destructive]:focus:**:text-default-12 gap-1.5 rounded-md px-1.5 py-1 text-sm data-disabled:opacity-50 data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 group/menubar-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "focus:bg-default-3 focus:text-default-12 data-[variant=destructive]:text-error-11 data-[variant=destructive]:focus:bg-error-3 data-[variant=destructive]:focus:text-error-11 data-[variant=destructive]:*:[svg]:text-error-11! not-data-[variant=destructive]:focus:**:text-default-12 gap-1.5 rounded-md px-1.5 py-1 text-label data-disabled:opacity-50 data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 group/menubar-item relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       {...props}
@@ -119,7 +119,7 @@ function MenubarCheckboxItem({
       data-slot="menubar-checkbox-item"
       data-inset={inset}
       className={cn(
-        "focus:bg-default-3 focus:text-default-12 focus:**:text-default-12 gap-1.5 rounded-md py-1 pr-1.5 pl-7 text-sm data-inset:pl-7 relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "focus:bg-default-3 focus:text-default-12 focus:**:text-default-12 gap-1.5 rounded-md py-1 pr-1.5 pl-7 text-label data-inset:pl-7 relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       checked={checked}
@@ -149,7 +149,7 @@ function MenubarRadioItem({
       data-slot="menubar-radio-item"
       data-inset={inset}
       className={cn(
-        "focus:bg-default-3 focus:text-default-12 focus:**:text-default-12 gap-1.5 rounded-md py-1 pr-1.5 pl-7 text-sm data-disabled:opacity-50 data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "focus:bg-default-3 focus:text-default-12 focus:**:text-default-12 gap-1.5 rounded-md py-1 pr-1.5 pl-7 text-label data-disabled:opacity-50 data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 relative flex cursor-default items-center outline-hidden select-none data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       {...props}
@@ -176,7 +176,7 @@ function MenubarLabel({
     <MenubarPrimitive.Label
       data-slot="menubar-label"
       data-inset={inset}
-      className={cn("px-1.5 py-1 text-sm font-medium data-inset:pl-7", className)}
+      className={cn("px-1.5 py-1 text-label font-medium data-inset:pl-7", className)}
       {...props}
     />
   )
@@ -202,7 +202,7 @@ function MenubarShortcut({
   return (
     <span
       data-slot="menubar-shortcut"
-      className={cn("text-default-11 group-focus/menubar-item:text-default-12 text-xs tracking-widest ml-auto", className)}
+      className={cn("text-default-11 group-focus/menubar-item:text-default-12 text-label-compact tracking-widest ml-auto", className)}
       {...props}
     />
   )
@@ -227,7 +227,7 @@ function MenubarSubTrigger({
       data-slot="menubar-sub-trigger"
       data-inset={inset}
       className={cn(
-        "focus:bg-default-3 focus:text-default-12 data-open:bg-default-3 data-open:text-default-12 gap-1.5 rounded-md px-1.5 py-1 text-sm data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 flex cursor-default items-center outline-none select-none",
+        "focus:bg-default-3 focus:text-default-12 data-open:bg-default-3 data-open:text-default-12 gap-1.5 rounded-md px-1.5 py-1 text-label data-inset:pl-7 [&_svg:not([class*='size-'])]:size-4 flex cursor-default items-center outline-none select-none",
         className
       )}
       {...props}

@@ -2,8 +2,8 @@ import { fileURLToPath } from 'url'
 import { join, resolve } from 'path'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
-// mcp/src/lib/ → resolve 4 levels up to project root
-const PROJECT_ROOT = resolve(__dirname, '../../../../')
+// mcp/src/lib/ (ou mcp/dist/lib/ une fois compilé) → 3 niveaux jusqu'à la racine
+const PROJECT_ROOT = resolve(__dirname, '../../../')
 
 export const PATHS = {
   projectRoot: PROJECT_ROOT,
@@ -14,7 +14,8 @@ export const PATHS = {
   contentTheming: join(PROJECT_ROOT, 'content/theming'),
   componentsUi: join(PROJECT_ROOT, 'registry/solar/ui'),
   globalsCss: join(PROJECT_ROOT, 'app/globals.css'),
-  solarThemeCss: join(PROJECT_ROOT, 'registry/solar/solar-theme.css'),
+  themeCss: join(PROJECT_ROOT, 'registry/solar/theme.css'),
+  themesDir: join(PROJECT_ROOT, 'registry/solar/themes'),
   registryJson: join(PROJECT_ROOT, 'registry.json'),
   componentsMeta: join(PROJECT_ROOT, 'content/components/_meta.js'),
   coreMeta: join(PROJECT_ROOT, 'content/core/_meta.js'),

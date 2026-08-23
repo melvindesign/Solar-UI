@@ -26,7 +26,7 @@ function FieldLegend({
     <legend
       data-slot="field-legend"
       data-variant={variant}
-      className={cn("mb-1.5 font-medium data-[variant=label]:text-sm data-[variant=legend]:text-base", className)}
+      className={cn("mb-1.5 font-medium data-[variant=label]:text-label data-[variant=legend]:text-title-6", className)}
       {...props}
     />
   )
@@ -112,7 +112,7 @@ function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="field-label"
       className={cn(
-        "gap-2 text-sm font-medium group-data-[disabled=true]/field:opacity-50 flex w-fit items-center leading-snug",
+        "gap-2 text-label font-medium group-data-[disabled=true]/field:opacity-50 flex w-fit items-center leading-snug",
         className
       )}
       {...props}
@@ -125,9 +125,9 @@ function FieldDescription({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="field-description"
       className={cn(
-        "text-default-11 text-left text-sm [[data-variant=legend]+&]:-mt-1.5 leading-normal font-normal group-has-data-horizontal/field:text-balance",
+        "text-default-11 text-left text-body-compact [[data-variant=legend]+&]:-mt-1.5 leading-normal font-normal group-has-data-horizontal/field:text-balance",
         "last:mt-0 nth-last-2:-mt-1",
-        "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-brand-11",
+        "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-link-11",
         className
       )}
       {...props}
@@ -146,7 +146,7 @@ function FieldSeparator({
     <div
       data-slot="field-separator"
       data-content={!!children}
-      className={cn("-my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2 relative", className)}
+      className={cn("-my-2 h-5 text-label group-data-[variant=outline]/field-group:-mb-2 relative", className)}
       {...props}
     >
       <Separator className="absolute inset-0 top-1/2" />
@@ -205,7 +205,7 @@ function FieldError({
     <div
       role="alert"
       data-slot="field-error"
-      className={cn("text-error-11 text-sm font-normal", className)}
+      className={cn("text-error-11 text-label font-normal", className)}
       {...props}
     >
       {content}

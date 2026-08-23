@@ -33,12 +33,42 @@
       "dependencies": [
         "@radix-ui/colors"
       ],
-      "description": "SolarUI color tokens \u2014 Radix Colors mapped to semantic scales (default, brand, error, success, warning, info).",
-      "docs": "Add `@import \"./solar-theme.css\";` at the very top of your globals.css (before `@import \"tailwindcss\"`).",
+      "description": "SolarUI design tokens — layers mirroring the Figma variable collections: Mode (Radix Colors), Screen (responsive sizes and type scales) and Theme (semantic tokens, one file per theme: Stellar and Trevia).",
+      "docs": "Add `@import \"./theme.css\";` to your globals.css, right after `@import \"tailwindcss\";`. It pulls in `radix.css`, `screen.css` and the theme files itself. The theme imported last in `theme.css` provides the defaults — swap the two `@import \"./themes/*.css\"` lines to change it. Any theme stays reachable at runtime with `data-theme=\"stellar\"` or `data-theme=\"trevia\"` on `<html>`; dark mode uses the `dark` class. Theme defaults are declared with `:where(:root)`, so your own `:root { --color-brand-9: … }` overrides them without `!important`.",
       "files": [
         {
-          "path": "registry/solar/solar-theme.css",
-          "target": "app/solar-theme.css",
+          "path": "registry/solar/radix.css",
+          "target": "app/radix.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/solar/screen.css",
+          "target": "app/screen.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/solar/themes/stellar.css",
+          "target": "app/themes/stellar.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/solar/themes/trevia.css",
+          "target": "app/themes/trevia.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/solar/motion.css",
+          "target": "app/screen.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/solar/base.css",
+          "target": "app/screen.css",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/solar/theme.css",
+          "target": "app/theme.css",
           "type": "registry:file"
         }
       ],

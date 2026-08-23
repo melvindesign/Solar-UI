@@ -60,7 +60,7 @@ function ThemeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="secondary" size="icon" aria-label="Toggle theme" className="size-8">
+        <Button variant="secondary" aria-label="Toggle theme" className="size-8">
           {isDark ? <Sun size={15} /> : <Moon size={15} />}
         </Button>
       </DropdownMenuTrigger>
@@ -131,8 +131,7 @@ export default function Navbar() {
         <div className="flex items-center gap-1 sm:hidden">
           <ThemeToggle />
           <Button 
-            variant={'ghost'} 
-            size="icon"
+            variant={'ghost'}
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
