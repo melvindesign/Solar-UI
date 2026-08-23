@@ -1,27 +1,21 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu'
 import { Desktop, FigmaLogo, GithubLogo, List, Moon, Sun, X } from '@phosphor-icons/react/dist/ssr'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import SolarUILogo from './SolarUILogo'
 
 const FIGMA_URL = 'https://www.figma.com/community/file/1617663822970891226'
+const GITHUB_URL = 'https://github.com/melvindesign/SolarUI'
 
 type ThemeMode = 'system' | 'dark' | 'light'
+
+const NEXT_MODE: Record<ThemeMode, ThemeMode> = {
+  system: 'dark',
+  dark: 'light',
+  light: 'system',
+}
 
 function applyTheme(mode: ThemeMode) {
   if (mode === 'dark') {
@@ -37,53 +31,41 @@ function applyTheme(mode: ThemeMode) {
   }
 }
 
+/**
+ * Cycles system → dark → light. The dropdown-menu version lived here until the
+ * button-only release; a single button covers the same three modes.
+ */
 function ThemeToggle() {
   const [mode, setMode] = useState<ThemeMode>('system')
-  const [isDark, setIsDark] = useState(true)
 
   useEffect(() => {
-    const saved = (localStorage.getItem('solar-ui') as ThemeMode) || 'system'
-    setMode(saved)
-    setIsDark(document.documentElement.classList.contains('dark'))
+    setMode((localStorage.getItem('solar-ui') as ThemeMode) || 'system')
   }, [])
 
-  const select = (next: ThemeMode) => {
+  const cycle = () => {
+    const next = NEXT_MODE[mode]
     setMode(next)
     localStorage.setItem('solar-ui', next)
     applyTheme(next)
-    setIsDark(
-      next === 'dark' ||
-        (next === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches),
-    )
   }
 
+  const Icon = mode === 'dark' ? Moon : mode === 'light' ? Sun : Desktop
+
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="secondary" aria-label="Toggle theme" className="size-8">
-          {isDark ? <Sun size={15} /> : <Moon size={15} />}
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="min-w-28">
-        <DropdownMenuItem onClick={() => select('system')} className="gap-2">
-          <Desktop size={14} />
-          System
-          {mode === 'system' && <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-9" />}
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => select('dark')} className="gap-2">
-          <Moon size={14} />
-          Dark
-          {mode === 'dark' && <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-9" />}
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => select('light')} className="gap-2">
-          <Sun size={14} />
-          Light
-          {mode === 'light' && <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-9" />}
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Button
+      variant="secondary"
+      onClick={cycle}
+      aria-label={`Theme: ${mode}. Switch to ${NEXT_MODE[mode]}`}
+      title={`Theme: ${mode}`}
+      className="size-8"
+    >
+      <Icon size={15} />
+    </Button>
   )
 }
+
+const navLinkClass =
+  'inline-flex items-center gap-1.5 rounded-field px-3 py-1.5 text-label font-medium tracking-body text-default-12 transition-colors hover:bg-default-4'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -100,37 +82,25 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <NavigationMenu className="hidden items-center gap-2 sm:flex">
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                <Link href={FIGMA_URL} target="_blank" rel="noopener noreferrer">
-                <FigmaLogo/>
-                  Figma
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                <Link href="https://github.com/melvindesign/SolarUI" target="_blank" rel="noopener noreferrer">
-                  <GithubLogo/>
-                  Github
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                <Link href="/docs">Documentation</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <ThemeToggle />
-          </NavigationMenuList>
-        </NavigationMenu>
+        <div className="hidden items-center gap-2 sm:flex">
+          <Link href={FIGMA_URL} target="_blank" rel="noopener noreferrer" className={navLinkClass}>
+            <FigmaLogo size={15} />
+            Figma
+          </Link>
+          <Link href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className={navLinkClass}>
+            <GithubLogo size={15} />
+            Github
+          </Link>
+          <Link href="/docs" className={navLinkClass}>
+            Documentation
+          </Link>
+          <ThemeToggle />
+        </div>
 
         {/* Mobile: theme toggle + hamburger */}
         <div className="flex items-center gap-1 sm:hidden">
           <ThemeToggle />
-          <Button 
+          <Button
             variant={'ghost'}
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
@@ -157,7 +127,7 @@ export default function Navbar() {
             Figma
           </Link>
           <Link
-            href="https://github.com/melvindesign/SolarUI"
+            href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setOpen(false)}

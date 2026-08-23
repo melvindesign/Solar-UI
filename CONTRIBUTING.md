@@ -15,37 +15,30 @@ SolarUI/
 │   │   └── components/         # Landing page sections
 │   ├── docs/
 │   │   └── layout.tsx          # Nextra docs layout
-│   ├── api/
-│   │   └── mcp/route.ts        # MCP server (HTTP endpoint)
 │   ├── globals.css             # Design tokens, Radix colors, Tailwind theme
 │   └── sidebar.css             # Nextra sidebar overrides
 │
 ├── components/
-│   ├── ui/                     # 68 Solar UI components
-│   ├── demos/                  # Interactive demos used in the docs
-│   ├── charts/                 # Recharts-based chart components
+│   ├── docs/                   # DocCard / DocGrid used by the docs index
+│   ├── color-scale.tsx         # Colour scale tables in the foundation docs
 │   └── component-preview.tsx   # Preview wrapper for MDX docs
 │
 ├── content/
-│   ├── overview/               # Introduction, installation, MCP, changelog
+│   ├── overview/               # Introduction, installation, Figma, changelog
 │   ├── components/             # One MDX file per component
-│   ├── foundation/             # Colors, typography
-│   ├── theming/                # Theming docs
-│   └── core/                  # Core utilities
+│   ├── foundation/             # Colors, typography, icons
+│   └── theming/                # Theming docs
 │
 ├── registry/
 │   └── solar/
-│       ├── ui/              # Source files for all UI components
+│       ├── ui/              # Source files for the UI components
 │       ├── themes/          # One file per theme (stellar, trevia) — Figma "Theme"
 │       ├── radix.css        # Radix Colors primitives — Figma "Mode"
 │       ├── screen.css       # Sizes & type scales, desktop/mobile — Figma "Screen"
 │       └── theme.css        # Entry point, distributed via the shadcn registry
 │
-├── lib/
-│   └── utils.ts                # cn() utility (clsx + tailwind-merge)
-│
-└── hooks/
-    └── use-mobile.tsx
+└── lib/
+    └── utils.ts                # cn() utility (clsx + tailwind-merge)
 ```
 
 ### Key conventions
@@ -73,11 +66,9 @@ npm install
 npm run dev
 ```
 
-The site is available at `http://localhost:3000`.
+The site is available at `http://localhost:3001`.
 
-The dev server also exposes:
-- Component registry at `http://localhost:3000/r`
-- MCP server at `http://localhost:3000/api/mcp`
+The dev server also exposes the component registry at `http://localhost:3001/r`.
 
 ### Build
 

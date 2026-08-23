@@ -6,6 +6,5 @@ export default {
   overview: 'Overview',
   foundation: 'Foundation',
   theming: 'Theming',
-  core: 'Core',
   components: 'Components'
 }

@@ -5,7 +5,7 @@
 [![Built with Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![shadcn/ui compatible](https://img.shields.io/badge/shadcn%2Fui-compatible-000000?logo=shadcnui&logoColor=white)](https://ui.shadcn.com)
 
-**Solar UI** is an open-source React component library built on top of [shadcn/ui](https://ui.shadcn.com). It ships 68 components designed to look great together — coherent visual system, Radix UI color scale, zero lock-in.
+**Solar UI** is an open-source React component library built on top of [shadcn/ui](https://ui.shadcn.com). It ships a coherent visual system built on the Radix UI color scale, with zero lock-in. This release distributes the **Button** component and the design tokens it sits on.
 
 → **[Documentation](https://solar-ui.com/docs)** · [GitHub](https://github.com/melvindesign/SolarUI)
 
@@ -26,10 +26,6 @@ Components are distributed via a shadcn-compatible registry. Full setup instruct
 # Add a component to your project
 npx shadcn@latest add https://solar-ui.com/r/button.json
 ```
-
-## AI assistant integration (MCP)
-
-Solar UI ships a [Model Context Protocol](https://modelcontextprotocol.io) server that exposes components, tokens, and design rules to AI assistants. See **[MCP.md](./MCP.md)** for setup instructions.
 
 ## Contributing
 

@@ -12,7 +12,7 @@ Quatre audiences confirmées, servies simultanément :
 
 - **Développeur produit solo ou petite équipe** — construit une app produit et veut une base UI cohérente sans écrire son propre design system. Installe les composants via le registry shadcn (`npx shadcn@latest add https://solar-ui.com/r/<component>.json`), les copie dans son projet, les possède.
 - **Designer produit travaillant en Figma** — utilise le fichier Solar UI publié sur Figma Community (tokens, styles typographiques, composants) pour maquetter avant handoff.
-- **Agent IA / assistant de code** (Claude, Cursor, Copilot) — consommateur de première classe, pas un bonus. Interroge le serveur MCP exposé sur `/api/mcp` pour obtenir variantes, tokens et règles exactes.
+- **Agent IA / assistant de code** (Claude, Cursor, Copilot) — consommateur de première classe, pas un bonus. Lit la documentation et les sources distribuées par le registry pour obtenir variantes, tokens et règles exactes.
 - **Équipe adoptant un DS interne** — fork Solar UI comme point de départ de son propre système.
 
 **Arbitrage confirmé :** quand deux besoins entrent en conflit, ce sont les besoins des projets de l'auteur qui tranchent. Solar UI est d'abord un outil interne ; les autres audiences en bénéficient sans le gouverner.
@@ -31,25 +31,23 @@ Trois mécanismes que Solar UI défend et qu'un dérivé shadcn ne pourrait pas 
 2. **Parité Figma ↔ code** — le design system existe des deux côtés. Le fichier Figma Community et le code partagent les mêmes tokens et les mêmes composants, ce qui rend le handoff vérifiable plutôt que déclaratif.
 3. **Échelle Radix 12 steps** — système de couleur structuré plutôt que palette ad hoc. Contraste accessible par construction, dark mode obtenu sans un seul préfixe `dark:` dans le code composant.
 
-Le serveur MCP est une capacité forte du produit, mais n'est pas ce sur quoi repose la différenciation.
 
 ## Operating Context
 
 - Les composants ne sont pas consommés comme un package npm : ils sont copiés dans le projet de l'utilisateur via le registry shadcn, puis modifiés librement. Il n'y a pas de chemin de mise à jour automatique — la stabilité des conventions compte donc plus que la vélocité des changements.
 - La documentation est le point d'entrée principal (site Nextra sur `solar-ui.com/docs`, un fichier MDX par composant, avec démos interactives).
-- La génération de code assistée par IA est un scénario d'usage courant : les assistants branchent le MCP sur `/api/mcp` (local ou déployé) et interrogent le DS avant d'écrire.
+- La génération de code assistée par IA est un scénario d'usage courant : les assistants lisent la documentation et les sources du registry avant d'écrire.
 - Le travail de design se fait dans Figma en amont, avec le fichier Solar UI comme source.
 
 ## Capabilities and Constraints
 
 **Fonctionnalités confirmées**
 
-- 68 composants UI dans `components/ui/`, sources distribuées depuis `registry/solar/ui/`.
+- Composants UI distribués depuis `registry/solar/ui/`. La release courante ne publie que `button`.
 - Registry compatible shadcn (`registry.json`, build via `npm run registry:build`).
 - Tokens distribués en miroir des collections Figma : `registry/solar/radix.css` (Mode), `screen.css` (Screen), `themes/*.css` (Theme), assemblés par `theme.css`.
 - Deux thèmes livrés — Stellar et Trevia — commutables à l'exécution via `data-theme`.
-- Serveur MCP HTTP exposant composants, tokens et règles de design (`app/api/mcp/route.ts`, documenté dans [MCP.md](MCP.md)).
-- Documentation Nextra avec recherche Pagefind, démos interactives, charts Recharts.
+- Documentation Nextra avec recherche Pagefind et démos interactives.
 - Fichier Figma publié sur Figma Community.
 
 **Contraintes techniques et conventions (à préserver)**
@@ -77,10 +75,10 @@ Le serveur MCP est une capacité forte du produit, mais n'est pas ce sur quoi re
 
 ## Evidence on Hand
 
-- Code réel : 68 composants, registry fonctionnel, serveur MCP opérationnel.
-- Documentation complète : `content/` (un MDX par composant, plus foundation, core, theming, overview).
+- Code réel : composant `button`, tokens complets, registry fonctionnel.
+- Documentation : `content/` (un MDX par composant publié, plus foundation, theming, overview).
 - Fichier Figma public : https://www.figma.com/community/file/1617663822970891226 (file key `sH6wWZEN3YF4RA5JCUumvD`).
-- Landing page existante avec sections Hero, Why, Showcase, Figma, Tech logos, Open source, CTA final.
+- Landing page existante avec sections Hero, Tech logos, Button, Footer.
 - Version courante : v0.6.0.
 - **Absences à ne pas fabriquer :** aucun témoignage, logo client, chiffre d'adoption, benchmark, étude de cas ou mention presse n'existe. Ne pas en inventer, ne pas afficher de compteurs d'installs ou d'étoiles non vérifiés.
 

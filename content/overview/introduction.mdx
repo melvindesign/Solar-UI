@@ -4,7 +4,6 @@ description: A modern, accessible, and customizable UI component library.
 ---
 
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { DoAndDont, Do, Dont } from '@/components/do-and-dont'
 import { Envelope } from '@phosphor-icons/react/dist/ssr'
 
@@ -42,7 +41,10 @@ Buttons and inputs must always have the same height. When a button sits next to 
 <DoAndDont>
   <Do label="Do — same height">
     <div className="flex w-full max-w-xs gap-2">
-      <Input placeholder="Email address" />
+      <input
+        placeholder="Email address"
+        className="h-field w-full min-w-0 rounded-field border border-transparent px-3 text-label font-light tracking-[0.4px] outline-none placeholder:text-default-11 text-default-12 [background:linear-gradient(to_top,var(--color-default-2),var(--color-default-1))_padding-box,linear-gradient(to_bottom,var(--color-default-8),var(--color-default-6))_border-box]"
+      />
       <Button className="sm:hidden shrink-0">
         <Envelope />
       </Button>

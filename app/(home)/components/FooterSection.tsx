@@ -11,7 +11,6 @@ const links = [
       { label: 'Changelog', href: '/docs/overview/changelog' },
       { label: 'Foundation', href: '/docs/foundation/colors' },
       { label: 'Components', href: '/docs/components/button' },
-      { label: 'MCP', href: '/docs/mcp' },
     ],
   },
   {
